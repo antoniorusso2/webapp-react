@@ -1,7 +1,7 @@
 :root {
   --app-color: #e5e5e5;
   --accent-color: #fb3640;
-  --bg-color: #384d48;
+  --bg-color: #04151f;
   --text-color: #ffffff;
   --gray: #6e7271;
 }
@@ -12,14 +12,12 @@
   flex-direction: column;
 }
 
-main {
-  flex-grow: 1;
+.container-fluid {
+  max-width: 1800px;
+  /* margin: auto; */
 }
-
-header,
-footer {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+.card {
+  max-width: 350px;
 }
 .active {
   color: var(--accent-color);

@@ -2,13 +2,17 @@ import { NavLink } from 'react-router-dom';
 
 export default function Nav() {
   return (
-    <ul className="navbar justify-content-start column-gap-4 py-4">
-      <li className="nav-item">
-        <NavLink to={'/'}>Home</NavLink>
-      </li>
-      <li>
-        <NavLink to={'/about'}>About</NavLink>
-      </li>
-    </ul>
+    <nav className="navbar">
+      <div className="container-fluid">
+        <ul className="nav-bar-nav d-flex column-gap-4 py-4">
+          <li className="nav-item">
+            <NavLink to={'/'}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to={'/about'}>About</NavLink>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 }

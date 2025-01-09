@@ -1,8 +1,24 @@
-a {
-  color: currentColor;
-  text-decoration: none;
+body {
+  background-color: var(--gray);
+}
+
+main {
+  flex-grow: 1;
+}
+
+header,
+footer {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
 }

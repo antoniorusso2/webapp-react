@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -19,14 +18,14 @@ export default function HomePage() {
   useEffect(fetchMovies, []);
 
   return (
-    <div className="container">
-      <div className="row">
+    <div className="container-fluid">
+      <ul className="row row-gap-4">
         {movies.map((movie, i) => (
-          <div key={i} className="col-xs col-sm-6 col-md-4 col-lg-3">
+          <li key={i} className="col-xs-12 col-sm-6 col-lg-3">
             <MovieCard movie={movie} />
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

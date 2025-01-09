@@ -1,7 +1,7 @@
 export default function MovieDetails() {
   return (
     <div className="container">
-      <span>dettaglio libro</span>
+      <span>dettaglio film</span>
     </div>
   );
 }
