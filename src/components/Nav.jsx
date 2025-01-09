@@ -2,17 +2,13 @@ import { NavLink } from 'react-router-dom';
 
 export default function Nav() {
   return (
-    <div className="container">
-      <div className="navbar">
-        <ul>
-          <li>
-            <NavLink to={'/'}>Home</NavLink>
-          </li>
-          <li>
-            <NavLink to={'/contacts'}>contacts</NavLink>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <ul className="navbar justify-content-start column-gap-4">
+      <li className="nav-item">
+        <NavLink to={'/'}>Home</NavLink>
+      </li>
+      <li>
+        <NavLink to={'/about'}>About</NavLink>
+      </li>
+    </ul>
   );
 }
