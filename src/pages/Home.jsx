@@ -4,28 +4,66 @@ import axios from 'axios';
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
+  const [search, setSearch] = useState('');
+  const [error, setError] = useState(null);
+
+  //risoluzione ricerca = fare di nuovo il fetch dei dati in base all input
+
+  function handleSearch(e) {
+    //setSearch in questa funzione verrebbe risolto in maniera asincrona causando un ritardo di un carattere tra il valore presente in variabile e quello effettivo scritto nella barra di ricerca
+    e.preventDefault();
+    fetchMovies(search);
+    console.log(`Ricerca in corso per: ${search}`);
+  }
 
   //fetch dati al caricamento con useEffect hook
-  function fetchMovies() {
+  function fetchMovies(searchParam) {
     axios
-      .get('http://localhost:3003/api/movies')
+      .get('http://localhost:3003/api/movies', {
+        params: {
+          title: searchParam,
+        },
+      })
       .then((res) => {
         setMovies(res.data);
+        setError(null);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        if (err.response.status === 404) {
+          //sovrascrivo il messaggio di errore con la versione tradotta in italiano e personalizzato per l'utente
+          err.response.data.message = 'Nessun film corrisponde al filtro di ricerca';
+        }
+        setError(err.response.data);
+      });
   }
 
   useEffect(fetchMovies, []);
 
   return (
-    <div className="container-fluid">
-      <ul className="row row-gap-4">
-        {movies.map((movie, i) => (
-          <li key={i} className="col-xs-12 col-sm-6 col-lg-3">
-            <MovieCard movie={movie} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className="container-fluid mb-5">
+        <form onSubmit={handleSearch} className="d-flex w-50 mx-auto my-4" role="search">
+          {/* il valore del campo di ricerca viene gestito direttamente tramite la funzione di callback passata all'input */}
+          <input className="form-control me-2 text-truncate" value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Cerca il titolo di un film" aria-label="Search" />
+          <button className="btn search" type="submit">
+            Cerca
+          </button>
+        </form>
+      </div>
+      <div className="container-fluid">
+        <ul className="row row-gap-4">
+          {/* se è presente un errore durante il fetch dei dati viene stampato in pagina il messaggio dell'errore */}
+          {error ? (
+            <p className="text-center fs-2 fw-bolder text-body-emphasis text-capitalize fst-italic ">{error.message}</p>
+          ) : (
+            movies.map((movie, i) => (
+              <li key={i} className="col-xs-12 col-sm-6 col-lg-3">
+                <MovieCard movie={movie} />
+              </li>
+            ))
+          )}
+        </ul>
+      </div>
+    </>
   );
 }

@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 
 /* eslint-disable react/prop-types */
 export default function MovieCard({ movie }) {
-  console.log(movie);
-
   const { image, title, director, id } = movie;
 
   return (

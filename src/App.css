@@ -22,3 +22,17 @@
 .active {
   color: var(--accent-color);
 }
+
+.btn.search {
+  background-color: rgba(140, 33, 33, 0.35);
+  color: var(--text-color);
+  opacity: 0.5;
+}
+
+.btn.search:hover {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  opacity: 0.8;
+
+  transition: all 0.3s;
+}
