@@ -1,6 +1,26 @@
+:root {
+  --app-color: #e5e5e5;
+  --accent-color: #fb3640;
+  --bg-color: #384d48;
+  --text-color: #ffffff;
+  --gray: #6e7271;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
+
+header,
+footer {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+.active {
+  color: var(--accent-color);
 }
