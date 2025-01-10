@@ -12,7 +12,7 @@ export default function MovieDetails() {
     axios
       .get(`http://localhost:3003/api/movies/${id}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setMovie(res.data);
       })
       .catch((err) => console.error(err));
@@ -24,7 +24,6 @@ export default function MovieDetails() {
   const stars = Array(5)
     .fill(0)
     .map((_, i) => i + 1);
-  console.log(stars);
 
   //parametro dinamico id con hook use params
   const params = useParams();
@@ -36,19 +35,18 @@ export default function MovieDetails() {
   useEffect(fetchMovie, [id]);
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid px-5">
       <div className="row">
         <div className="col">
           <div className=" d-flex flex-column align-items-center flex-sm-row align-items-sm-start gap-5 movie_details">
             <img src={movie.image} className="movie_thumb object-fit-cover" alt="" />
             <div className="description">
               <h2 className="fs-1 fw-bold text-decoration-underline w-100">{movie.title}</h2>
+              <div className="stars my-3">{stars.map((n) => (n < movie.avg_vote ? <FontAwesomeIcon key={n} icon={fullStar} /> : <FontAwesomeIcon icon={faStar} key={n} />))}</div>
               <p className="fst-italic text-secondary">{movie.director}</p>
-              <p className="fs-4">{movie.abstract}</p>
+              <p className="abstract">{movie.abstract}</p>
               {movie.release_year && <p>Anno di uscita: {movie.release_year}</p>}
             </div>
-
-            <div className="stars">{stars.map((n) => (n < movie.avg_vote ? <FontAwesomeIcon key={n} icon={fullStar} /> : <FontAwesomeIcon icon={faStar} key={n} />))}</div>
           </div>
         </div>
         <div className="col-12 mt-4">

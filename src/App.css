@@ -1,10 +1,11 @@
 :root {
-  --app-color: #e5e5e5;
-  --accent-color: #fb3640;
-  --bg-color: #04151f;
-  --text-color: #ffffff;
-  --gray: #3581b8;
+  --app-color: #46466e;
+  --accent-color: #dd105e;
+  --bg-color: #8787a3;
+  --text-color: #e8e2e2;
+  --gray: #393e46;
   --star-color: #ece852;
+  --overlay-color: #393e4690;
 }
 
 #root {
@@ -13,13 +14,20 @@
   flex-direction: column;
 }
 
+/* custom container padding */
 .container-fluid {
   max-width: 1800px;
   /* margin: auto; */
 }
+
+/* card custom width */
 .card {
   max-width: 350px;
 }
+
+/* 
+active class for links
+*/
 .active {
   color: var(--accent-color);
   position: relative;
@@ -37,9 +45,10 @@
 
   animation: extend 0.5s ease-in-out;
 }
+/* btns custom rules */
 .btn.search,
 .btn.back {
-  background-color: rgba(140, 33, 33, 0.35);
+  background-color: var(--accent-color);
   color: var(--text-color);
   opacity: 0.5;
 }
@@ -47,6 +56,11 @@
 .btn.back {
   width: 10rem;
 }
+
+.btn.back:hover svg {
+  animation: arrowBounce 0.5s ease-in-out;
+}
+
 .btn.search:hover,
 .btn.back:hover {
   background-color: var(--accent-color);
@@ -56,6 +70,7 @@
   transition: all 0.3s;
 }
 
+/* movie section with cards */
 .movie_thumb {
   width: 250px;
 }
@@ -64,7 +79,8 @@
   overflow: hidden;
   height: 0%;
   width: 100%;
-  background-color: var(--bg-color);
+  background-color: var(--overlay-color);
+  backdrop-filter: blur(10px);
   position: absolute;
   bottom: 0;
   right: 0;
@@ -74,6 +90,7 @@
   justify-content: center;
   color: var(--text-color);
 }
+
 .card:hover .my_overlay {
   animation: extendHeight 0.5s ease-in-out forwards;
 }
@@ -83,32 +100,37 @@
 }
 
 .movie_details {
-  background-color: var(--bg-color);
+  background-color: var(--app-color);
+  backdrop-filter: blur(10px);
   color: var(--text-color);
   border-radius: 1rem;
   padding: 1.2rem;
 }
+
 .movie_details h2 {
   letter-spacing: 0.2rem;
-  /* color: transparent; */
   text-underline-offset: 0.7rem;
   text-transform: uppercase;
   margin-bottom: 2rem;
 }
 
 .movie_details img {
-  box-shadow: 1px 1px 10px var(--gray);
+  box-shadow: 1px 1px 10px var(--bg-color);
+}
+.abstract {
+  font-size: 1rem;
 }
 
 .year {
   font-size: 0.9rem;
-  color: var(--app-color);
+  color: var(--text-color);
 }
 
 .stars {
   color: var(--star-color);
 }
 
+/* keyframes */
 @keyframes extendHeight {
   0% {
     height: 0%;
@@ -127,5 +149,17 @@
   }
   100% {
     width: 80%;
+  }
+}
+
+@keyframes arrowBounce {
+  0% {
+    transform: translateX(40%);
+  }
+  50% {
+    transform: translateX(-40%);
+  }
+  100% {
+    transform: translateX(0%);
   }
 }

@@ -1,5 +1,5 @@
 body {
-  background-color: var(--gray);
+  background-color: var(--bg-color);
 }
 
 main {
@@ -8,7 +8,7 @@ main {
 
 header,
 footer {
-  background-color: var(--bg-color);
+  background-color: var(--app-color);
   color: var(--text-color);
 }
 
