@@ -33,7 +33,6 @@
 .btn.back {
   width: 10rem;
 }
-
 .btn.search:hover,
 .btn.back:hover {
   background-color: var(--accent-color);
@@ -47,9 +46,50 @@
   width: 250px;
 }
 
+.my_overlay {
+  overflow: hidden;
+  height: 0%;
+  width: 100%;
+  background-color: var(--bg-color);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(-50% -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--text-color);
+}
+.card-body {
+  height: 100% !important;
+}
+.card:hover .my_overlay {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
 .movie_details {
   background-color: var(--bg-color);
   color: var(--text-color);
   border-radius: 1rem;
   padding: 1.2rem;
+}
+.movie_details h2 {
+  letter-spacing: 0.2rem;
+  /* color: transparent; */
+  text-underline-offset: 0.7rem;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.movie_details img {
+  box-shadow: 1px 1px 10px var(--gray);
+}
+
+@keyframes fadeIn {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 40%;
+  }
 }

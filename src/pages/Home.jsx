@@ -42,7 +42,7 @@ export default function HomePage() {
 
   return (
     <>
-      <div className="container-fluid mb-5">
+      <div className="container-fluid mb-5 px-5">
         <form onSubmit={handleSearch} className="d-flex w-50 mx-auto my-4" role="search">
           {/* il valore del campo di ricerca viene gestito direttamente tramite la funzione di callback passata all'input */}
           <input className="form-control me-2 text-truncate" value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Cerca il titolo di un film" aria-label="Search" />
@@ -51,7 +51,7 @@ export default function HomePage() {
           </button>
         </form>
       </div>
-      <div className="container-fluid">
+      <div className="container-fluid px-5">
         <ul className="row row-gap-5">
           {/* se è presente un errore durante il fetch dei dati viene stampato in pagina il messaggio dell'errore */}
           {error ? (
