@@ -23,13 +23,19 @@
   color: var(--accent-color);
 }
 
-.btn.search {
+.btn.search,
+.btn.back {
   background-color: rgba(140, 33, 33, 0.35);
   color: var(--text-color);
   opacity: 0.5;
 }
 
-.btn.search:hover {
+.btn.back {
+  width: 10rem;
+}
+
+.btn.search:hover,
+.btn.back:hover {
   background-color: var(--accent-color);
   color: var(--text-color);
   opacity: 0.8;

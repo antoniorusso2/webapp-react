@@ -17,7 +17,7 @@ export default function HomePage() {
   }
 
   //fetch dati al caricamento con useEffect hook
-  function fetchMovies(searchParam) {
+  function fetchMovies(searchParam = '') {
     axios
       .get('http://localhost:3003/api/movies', {
         params: {
@@ -25,6 +25,7 @@ export default function HomePage() {
         },
       })
       .then((res) => {
+        console.log(searchParam);
         setMovies(res.data);
         setError(null);
       })
@@ -51,10 +52,16 @@ export default function HomePage() {
         </form>
       </div>
       <div className="container-fluid">
-        <ul className="row row-gap-4">
+        <ul className="row row-gap-5">
           {/* se è presente un errore durante il fetch dei dati viene stampato in pagina il messaggio dell'errore */}
           {error ? (
-            <p className="text-center fs-2 fw-bolder text-body-emphasis text-capitalize fst-italic ">{error.message}</p>
+            <div className="container">
+              <p className="text-center fs-2 fw-bolder text-body-emphasis text-capitalize fst-italic ">{error.message}</p>
+
+              <button onClick={() => fetchMovies()} className="btn back d-block mx-auto">
+                Torna indietro
+              </button>
+            </div>
           ) : (
             movies.map((movie, i) => (
               <li key={i} className="col-xs-12 col-sm-6 col-lg-3">
