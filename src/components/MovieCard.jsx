@@ -12,7 +12,7 @@ export default function MovieCard({ movie }) {
           <h2 className="card-title fs-4 fw-bold text-uppercase text-truncate ">{title}</h2>
           <p className="card-text fst-italic ">{director}</p>
           <p className="year">{release_year} </p>
-          <Link to={`/movies/${id}`} className="btn btn-primary">
+          <Link to={`/movies/${id}`} className="btn details">
             Dettagli
           </Link>
         </div>
