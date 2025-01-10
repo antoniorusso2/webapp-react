@@ -1,3 +1,6 @@
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons';
+
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
@@ -5,15 +8,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export default function MovieDetails() {
-  const [movie, setMovie] = useState({});
-  //parametro dinamico id con hook use params
-  const params = useParams();
-
-  //navigate per tornare alla pagina precedente
-  const navigate = useNavigate();
-
-  const id = params.id;
-
   function fetchMovie() {
     axios
       .get(`http://localhost:3003/api/movies/${id}`)
@@ -23,6 +17,21 @@ export default function MovieDetails() {
       })
       .catch((err) => console.error(err));
   }
+  //film corrente
+  const [movie, setMovie] = useState({});
+
+  //creazione array per l'inserimento delle stelle
+  const stars = Array(5)
+    .fill(0)
+    .map((_, i) => i + 1);
+  console.log(stars);
+
+  //parametro dinamico id con hook use params
+  const params = useParams();
+  const id = params.id;
+
+  //navigate per tornare alla pagina precedente
+  const navigate = useNavigate();
 
   useEffect(fetchMovie, [id]);
 
@@ -38,6 +47,8 @@ export default function MovieDetails() {
               <p className="fs-4">{movie.abstract}</p>
               {movie.release_year && <p>Anno di uscita: {movie.release_year}</p>}
             </div>
+
+            <div className="stars">{stars.map((n) => (n < movie.avg_vote ? <FontAwesomeIcon key={n} icon={fullStar} /> : <FontAwesomeIcon icon={faStar} key={n} />))}</div>
           </div>
         </div>
         <div className="col-12 mt-4">

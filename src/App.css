@@ -3,7 +3,8 @@
   --accent-color: #fb3640;
   --bg-color: #04151f;
   --text-color: #ffffff;
-  --gray: #6e7271;
+  --gray: #3581b8;
+  --star-color: #ece852;
 }
 
 #root {
@@ -21,8 +22,21 @@
 }
 .active {
   color: var(--accent-color);
+  position: relative;
+  padding-bottom: 0.2rem;
 }
+.active::after {
+  content: '';
+  width: 80%;
+  height: 1px;
+  background-color: var(--accent-color);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
+  animation: extend 0.5s ease-in-out;
+}
 .btn.search,
 .btn.back {
   background-color: rgba(140, 33, 33, 0.35);
@@ -54,17 +68,18 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  transform: translate(-50% -50%);
+  left: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: var(--text-color);
 }
+.card:hover .my_overlay {
+  animation: extendHeight 0.5s ease-in-out forwards;
+}
+
 .card-body {
   height: 100% !important;
-}
-.card:hover .my_overlay {
-  animation: fadeIn 0.5s ease-in-out forwards;
 }
 
 .movie_details {
@@ -85,11 +100,32 @@
   box-shadow: 1px 1px 10px var(--gray);
 }
 
-@keyframes fadeIn {
+.year {
+  font-size: 0.9rem;
+  color: var(--app-color);
+}
+
+.stars {
+  color: var(--star-color);
+}
+
+@keyframes extendHeight {
   0% {
     height: 0%;
   }
   100% {
     height: 40%;
+  }
+}
+
+@keyframes extend {
+  0% {
+    width: 0%;
+  }
+  80% {
+    width: 100%;
+  }
+  100% {
+    width: 80%;
   }
 }
