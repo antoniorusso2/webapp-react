@@ -25,8 +25,8 @@ export default function HomePage() {
         },
       })
       .then((res) => {
-        console.log(searchParam);
         setMovies(res.data);
+        console.log(res.data);
         setError(null);
       })
       .catch((err) => {
@@ -58,13 +58,23 @@ export default function HomePage() {
             <div className="container">
               <p className="text-center fs-2 fw-bolder text-body-emphasis text-capitalize fst-italic ">{error.message}</p>
 
-              <button onClick={() => fetchMovies()} className="btn back d-block mx-auto">
+              <button
+                onClick={() => {
+                  fetchMovies();
+                  setSearch('');
+                }}
+                className="btn back d-block mx-auto"
+              >
                 Torna indietro
               </button>
             </div>
           ) : (
             movies.map((movie, i) => (
-              <li key={i} className="col-xs-12 col-sm-6 col-lg-3">
+              <li
+                key={i}
+                className="col-xs-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-3
+              "
+              >
                 <MovieCard movie={movie} />
               </li>
             ))

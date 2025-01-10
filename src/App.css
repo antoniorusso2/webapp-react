@@ -42,3 +42,14 @@
 
   transition: all 0.3s;
 }
+
+.movie_thumb {
+  width: 250px;
+}
+
+.movie_details {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 1rem;
+  padding: 1.2rem;
+}
