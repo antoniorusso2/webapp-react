@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function StarsRating({ vote = 0 }) {
   //array voto massimo con numeri da 1  a 5
-  console.log('vote:', vote);
+  // console.log('vote:', vote);
 
   const stars = Array(5)
     .fill(0)

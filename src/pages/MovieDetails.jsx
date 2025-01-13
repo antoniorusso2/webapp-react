@@ -1,5 +1,3 @@
-import { faStar } from '@fortawesome/free-regular-svg-icons';
-import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
@@ -16,18 +14,13 @@ export default function MovieDetails() {
     axios
       .get(`${apiUrl}/movies/${id}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setMovie(res.data);
       })
       .catch((err) => console.error(err));
   }
   //film corrente
   const [movie, setMovie] = useState({});
-
-  //creazione array per l'inserimento delle stelle
-  const stars = Array(5)
-    .fill(0)
-    .map((_, i) => i + 1);
 
   //parametro dinamico id con hook use params
   const params = useParams();
@@ -38,7 +31,7 @@ export default function MovieDetails() {
 
   useEffect(fetchMovie, [id]); //async
 
-  console.log('movie ', movie.reviews);
+  // console.log('movie ', movie.reviews);
 
   return (
     <div className="container-fluid px-4">
@@ -50,7 +43,8 @@ export default function MovieDetails() {
               <h2 className="fs-1 fw-bold text-decoration-underline w-100">{movie.title}</h2>
               <p className="fst-italic">{movie.director}</p>
               <p className="abstract">{movie.abstract}</p>
-              <div className="stars my-3">{stars.map((n) => (n < movie.avg_vote ? <FontAwesomeIcon key={n} icon={fullStar} /> : <FontAwesomeIcon icon={faStar} key={n} />))}</div>
+              {/* <div className="stars my-3">{stars.map((n) => (n < movie.avg_vote ? <FontAwesomeIcon key={n} icon={fullStar} /> : <FontAwesomeIcon icon={faStar} key={n} />))}</div> */}
+              <StarsRating vote={Math.round(movie.avg_vote)} />
               {movie.release_year && <p>Anno di uscita: {movie.release_year}</p>}
             </div>
           </div>

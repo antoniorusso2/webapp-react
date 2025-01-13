@@ -26,7 +26,7 @@ export default function HomePage() {
       })
       .then((res) => {
         setMovies(res.data);
-        console.log(res.data);
+        // console.log(res.data);
         setError(null);
       })
       .catch((err) => {

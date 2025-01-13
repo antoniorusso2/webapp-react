@@ -14,7 +14,7 @@ export default function AddReview({ id, onSuccess = () => {}, apiUrl = '' }) {
 
   function handleChange(e) {
     //previene il ricaricamento della pagina al submit del for
-    console.log(e.target.name, e.target.value);
+    // console.log(e.target.name, e.target.value);
 
     //destrutturazione valori del form
     const { name: inputName, value } = e.target;
@@ -29,7 +29,7 @@ export default function AddReview({ id, onSuccess = () => {}, apiUrl = '' }) {
   function handleForm(e) {
     e.preventDefault();
 
-    console.log(formData);
+    // console.log(formData);
 
     const { name, vote } = formData;
 
@@ -40,8 +40,8 @@ export default function AddReview({ id, onSuccess = () => {}, apiUrl = '' }) {
 
     axios
       .post(`${apiUrl}/movies/${id}`, formData)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        // console.log(res);
         //reset form e fetch movie tramite la callback passata dal componente padre
         setFormData(initialFormData);
         setIsDataValid(true);
