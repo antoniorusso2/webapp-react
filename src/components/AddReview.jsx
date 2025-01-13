@@ -1,6 +1,6 @@
 export default function AddReview() {
   return (
-    <form>
+    <form className="add_review">
       {/* nome utente che inserisce la recensione */}
       <label htmlFor="name">Nome:</label>
       <input type="text" id="name" name="name" required />
