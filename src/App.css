@@ -103,11 +103,11 @@ active class for links
   height: 100% !important;
 }
 
+/* details page */
 .movie_details,
 .review,
 .add_review {
   background-color: var(--app-color);
-  backdrop-filter: blur(10px);
   color: var(--text-color);
   border-radius: 1rem;
   padding: 1.2rem;

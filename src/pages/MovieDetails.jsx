@@ -1,17 +1,19 @@
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons';
-
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import AddReview from '../components/AddReview';
+
+//variabile con url api basato sul file env
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function MovieDetails() {
   function fetchMovie() {
     axios
-      .get(`http://localhost:3003/api/movies/${id}`)
+      .get(`${apiUrl}/movies/${id}`)
       .then((res) => {
         console.log(res.data);
         setMovie(res.data);
@@ -60,7 +62,7 @@ export default function MovieDetails() {
       ))}
 
       <div className="col-12">
-        <AddReview />
+        <AddReview id={id} onSuccess={fetchMovie} apiUrl={apiUrl} />
       </div>
       <div className="col-12 mt-4">
         <button onClick={() => navigate(-1)} className="btn back mx-auto d-block">

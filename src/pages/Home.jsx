@@ -19,7 +19,7 @@ export default function HomePage() {
   //fetch dati al caricamento con useEffect hook
   function fetchMovies(searchParam = '') {
     axios
-      .get('http://localhost:3003/api/movies', {
+      .get('http://localhost:3000/api/movies', {
         params: {
           title: searchParam,
         },
