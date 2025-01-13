@@ -143,8 +143,9 @@ active class for links
   gap: 1rem;
   margin-bottom: 2rem;
 
-  & input {
-    border-radius: 0.5rem;
+  & input,
+  select {
+    border-radius: 0.2rem;
   }
 }
 .review {
@@ -158,6 +159,27 @@ active class for links
 
   border-radius: 1rem;
 }
+
+/* classi di errore */
+.not_valid {
+  border: 2px solid red;
+}
+.error_message {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.my_label {
+  display: flex;
+  flex-wrap: wrap;
+  & input,
+  select {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
+
 /* keyframes */
 @keyframes extendHeight {
   0% {

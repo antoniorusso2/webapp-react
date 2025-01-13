@@ -10,6 +10,7 @@ const initialFormData = {
 
 export default function AddReview({ id, onSuccess = () => {}, apiUrl = '' }) {
   const [formData, setFormData] = useState(initialFormData);
+  const [isDataValid, setIsDataValid] = useState(true);
 
   function handleChange(e) {
     //previene il ricaricamento della pagina al submit del for
@@ -18,12 +19,10 @@ export default function AddReview({ id, onSuccess = () => {}, apiUrl = '' }) {
     //destrutturazione valori del form
     const { name: inputName, value } = e.target;
 
-    //formattazione trim stringa in input
-
     //aggiorno stato form con i valori del camo in questione
     setFormData({
       ...formData,
-      [inputName]: value,
+      [inputName]: value.trim(),
     });
   }
 
@@ -32,8 +31,10 @@ export default function AddReview({ id, onSuccess = () => {}, apiUrl = '' }) {
 
     console.log(formData);
 
-    if (!formData.name || !formData.text || 1 < formData.vote > 0) {
-      alert('Il nome è un campo richiesto e il voto deve essere compreso tra 1 e 5');
+    const { name, vote } = formData;
+
+    if (!name || vote < 1 || vote > 5) {
+      setIsDataValid(false);
       return; // evito che il form venga inviato se non sono stati riempiti correttamente
     }
 
@@ -43,6 +44,7 @@ export default function AddReview({ id, onSuccess = () => {}, apiUrl = '' }) {
         console.log(res);
         //reset form e fetch movie tramite la callback passata dal componente padre
         setFormData(initialFormData);
+        setIsDataValid(true);
         onSuccess();
       })
       .catch((err) => {
@@ -56,20 +58,27 @@ export default function AddReview({ id, onSuccess = () => {}, apiUrl = '' }) {
     <form onSubmit={handleForm} className="add_review">
       <h2 className="add_review_title text-center fw-bold fs-1">Aggiungi qui la tua recensione:</h2>
       {/* nome utente che inserisce la recensione */}
-      <label htmlFor="name">Nome:</label>
-      <input onChange={handleChange} type="text" id="name" name="name" value={formData.name} required />
+      <label htmlFor="name" className="my_label">
+        Nome:
+        <input className={`${!isDataValid ? 'not_valid' : ''}`} onChange={handleChange} type="text" id="name" name="name" value={formData.name} placeholder="Inserisci il tuo nome" required />
+        {!isDataValid && <p className="error_message">Il nome è obbligatorio</p>}
+      </label>
       {/* testo della recensione */}
       <label htmlFor="text">Recensione:</label>
       <textarea onChange={handleChange} id="text" name="text" rows="4" value={formData.text} />
       {/* voto della recensione */}
-      <label htmlFor="vote">Voto:</label>
-      <select onChange={handleChange} value={formData.vote} name="vote" id="vote">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+      <label className="my_label" htmlFor="vote">
+        Voto:
+        <select className={`${!isDataValid ? 'not_valid' : ''}`} onChange={handleChange} value={formData.vote} name="vote" id="vote">
+          <option value="0">Scegli un voto</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        {!isDataValid && <p className="error_message">Il voto è obbligatorio</p>}
+      </label>
       {/* submit del form */}
       <button className="btn align-self-end">Invia</button>
     </form>
