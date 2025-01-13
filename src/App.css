@@ -81,7 +81,7 @@ active class for links
 
 .my_overlay {
   overflow: hidden;
-  height: 0%;
+  height: 0;
   width: 100%;
   background-color: var(--overlay-color);
   backdrop-filter: blur(10px);
@@ -89,9 +89,6 @@ active class for links
   bottom: 0;
   right: 0;
   left: 0;
-  /* display: flex; */
-  /* flex-direction: column;
-  justify-content: center; */
   color: var(--text-color);
 }
 
