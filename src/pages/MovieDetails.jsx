@@ -41,7 +41,7 @@ export default function MovieDetails() {
   console.log('movie ', movie.reviews);
 
   return (
-    <div className="container-fluid px-5">
+    <div className="container-fluid px-4">
       <div className="row">
         <div className="col">
           <div className=" d-flex flex-column align-items-center flex-sm-row align-items-sm-start gap-5 movie_details">
@@ -64,7 +64,7 @@ export default function MovieDetails() {
         </div>
       ))}
 
-      <div className="col-12">
+      <div className="col">
         <AddReview id={id} onSuccess={fetchMovie} apiUrl={apiUrl} />
       </div>
       <div className="col-12 mt-4">

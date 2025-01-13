@@ -8,12 +8,12 @@ html {
 
 body {
   background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 main {
   flex-grow: 1;
 }
-
 header,
 footer {
   background-color: var(--app-color);
@@ -32,6 +32,15 @@ a {
   line-height: 2.5rem;
 }
 
-input:active {
-  outline: 1px var(--accent-color);
+input {
+  border: none;
+  border-radius: 0.2rem;
+  line-height: 1.5rem;
+  padding: 0.3rem 0.7rem;
+}
+input:focus {
+  outline: 1px solid var(--accent-color);
+  border-radius: 0.5rem;
+  border: none;
+  transition: all 0.3s ease-in-out;
 }
