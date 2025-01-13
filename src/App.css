@@ -1,6 +1,7 @@
 :root {
   --app-color: #46466e;
   --accent-color: #dd105e;
+  --hover-accent-color: #5e0527;
   --bg-color: #8787a3;
   --text-color: #e8e2e2;
   --gray: #393e46;
@@ -55,9 +56,9 @@ active class for links
 }
 
 .btn:hover {
-  background-color: var(--accent-color);
+  background-color: var(--hover-accent-color);
+  box-shadow: var(1px 1px 1px 1px var(--accent-color));
   color: var(--text-color);
-  opacity: 0.8;
 
   transition: all 0.3s;
 }
@@ -84,7 +85,7 @@ active class for links
   height: 0;
   width: 100%;
   background-color: var(--overlay-color);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(3px);
   position: absolute;
   bottom: 0;
   right: 0;
@@ -163,7 +164,7 @@ active class for links
     height: 0%;
   }
   100% {
-    height: 60%;
+    height: 100%;
   }
 }
 

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import AddReview from '../components/AddReview';
+import StarsRating from '../components/StarsRating';
 
 //variabile con url api basato sul file env
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -37,6 +38,8 @@ export default function MovieDetails() {
 
   useEffect(fetchMovie, [id]); //async
 
+  console.log('movie ', movie.reviews);
+
   return (
     <div className="container-fluid px-5">
       <div className="row">
@@ -57,7 +60,7 @@ export default function MovieDetails() {
         <div key={i} className="review px-5 my-3">
           <p className="review_name">{el.name}</p>
           <p className="review_description">{el.text}.</p>
-          <div className="stars my-3">{stars.map((n) => (n < el.vote ? <FontAwesomeIcon key={n} icon={fullStar} /> : <FontAwesomeIcon icon={faStar} key={n} />))}</div>
+          <StarsRating vote={el.vote} />
         </div>
       ))}
 

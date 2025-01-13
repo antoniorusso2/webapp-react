@@ -31,3 +31,7 @@ a {
   color: currentColor;
   line-height: 2.5rem;
 }
+
+input:active {
+  outline: 1px var(--accent-color);
+}

@@ -52,7 +52,7 @@ export default function HomePage() {
         </form>
       </div>
       <div className="container-fluid px-5">
-        <ul className="row row-gap-5 justify-content-center">
+        <ul className="row row-gap-5">
           {/* se è presente un errore durante il fetch dei dati viene stampato in pagina il messaggio dell'errore */}
           {error ? (
             <div className="container">
@@ -72,7 +72,7 @@ export default function HomePage() {
             movies.map((movie, i) => (
               <li
                 key={i}
-                className="col-xs-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-2
+                className="col-xs-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-3
               "
               >
                 <MovieCard movie={movie} />
