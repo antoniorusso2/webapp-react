@@ -92,8 +92,11 @@ active class for links
   color: var(--text-color);
 }
 
-.card:hover .my_overlay {
-  animation: extendHeight 0.5s ease-in-out forwards;
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  & .my_overlay {
+    animation: extendHeight 0.5s ease-in-out forwards;
+  }
 }
 
 .card-body {
@@ -101,7 +104,8 @@ active class for links
 }
 
 .movie_details,
-.review {
+.review,
+form {
   background-color: var(--app-color);
   backdrop-filter: blur(10px);
   color: var(--text-color);

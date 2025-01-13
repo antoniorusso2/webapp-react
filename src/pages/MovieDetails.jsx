@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import AddReview from '../components/AddReview';
 
 export default function MovieDetails() {
   function fetchMovie() {
@@ -42,7 +43,7 @@ export default function MovieDetails() {
             <img src={movie.image} className="movie_thumb object-fit-cover" alt="" />
             <div className="description">
               <h2 className="fs-1 fw-bold text-decoration-underline w-100">{movie.title}</h2>
-              <p className="fst-italic text-secondary">{movie.director}</p>
+              <p className="fst-italic">{movie.director}</p>
               <p className="abstract">{movie.abstract}</p>
               <div className="stars my-3">{stars.map((n) => (n < movie.avg_vote ? <FontAwesomeIcon key={n} icon={fullStar} /> : <FontAwesomeIcon icon={faStar} key={n} />))}</div>
               {movie.release_year && <p>Anno di uscita: {movie.release_year}</p>}
@@ -57,6 +58,10 @@ export default function MovieDetails() {
           <div className="stars my-3">{stars.map((n) => (n < el.vote ? <FontAwesomeIcon key={n} icon={fullStar} /> : <FontAwesomeIcon icon={faStar} key={n} />))}</div>
         </div>
       ))}
+
+      <div className="col-12">
+        <AddReview />
+      </div>
       <div className="col-12 mt-4">
         <button onClick={() => navigate(-1)} className="btn back mx-auto d-block">
           <FontAwesomeIcon icon={faArrowLeft} />
