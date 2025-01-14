@@ -38,13 +38,13 @@ export default function MovieDetails() {
   // console.log('movie ', movie.reviews);
 
   return (
-    <div className="container-fluid px-4">
-      <div className="row">
-        <div className="col">
-          <div className=" d-flex flex-column align-items-center flex-sm-row align-items-sm-start gap-5 movie_details">
+    <div className="container-fluid px-4 detail_page" style={{ backgroundImage: `url(${movie.image})`, backgroundPosition: 'top', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed' }}>
+      <div className="row py-5">
+        <div className="col-12 mb-3">
+          <div className="d-flex flex-column align-items-center flex-sm-row align-items-sm-start gap-5 movie_details blur p-4">
             <img src={movie.image} className="movie_thumb object-fit-cover" alt="" />
             <div className="description">
-              <h2 className="fs-1 fw-bold text-decoration-underline w-100">{movie.title}</h2>
+              <h2 className="fs-1 fw-bold text-decoration-underline w-100 mb-5">{movie.title}</h2>
               <p className="fst-italic">{movie.director}</p>
               <p className="abstract">{movie.abstract}</p>
               {/* voto con stelline */}
@@ -53,22 +53,23 @@ export default function MovieDetails() {
             </div>
           </div>
         </div>
-      </div>
-      {movie.reviews?.map((el, i) => (
-        <div key={i} className="review px-5 my-3">
-          <p className="review_name">{el.name}</p>
-          <p className="review_description">{el.text}.</p>
-          <StarsRating vote={el.vote} />
+        {movie.reviews?.map((el, i) => (
+          <div key={i} className="col-12">
+            <div className="review blur py-3 my-2">
+              <p className="review_name">{el.name}</p>
+              <p className="review_description">{el.text}.</p>
+              <StarsRating vote={el.vote} />
+            </div>
+          </div>
+        ))}
+        <div className="col-12 my-3">
+          <AddReview id={id} onSuccess={fetchMovie} apiUrl={apiUrl} />
         </div>
-      ))}
-
-      <div className="col">
-        <AddReview id={id} onSuccess={fetchMovie} apiUrl={apiUrl} />
-      </div>
-      <div className="col-12 mt-4">
-        <button onClick={() => navigate(-1)} className="btn back mx-auto d-block">
-          <FontAwesomeIcon icon={faArrowLeft} />
-        </button>
+        <div className="col-12 mt-4">
+          <button onClick={() => navigate(-1)} className="btn back mx-auto d-block">
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ export default function DefaultLayout() {
   return (
     <>
       <Header />
-      <main className="my-4">
+      <main>
         <Outlet />
       </main>
       <Footer />

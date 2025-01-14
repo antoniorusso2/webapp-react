@@ -6,7 +6,7 @@ import GlobalContext from '../contexts/globalContext';
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState('');
-  const [error, setError] = useState(null);
+  const [searchError, setSearchError] = useState(null);
 
   const { setIsLoading } = useContext(GlobalContext);
 
@@ -22,14 +22,14 @@ export default function HomePage() {
       .then((res) => {
         setMovies(res.data);
         // console.log(res.data);
-        setError(null);
+        setSearchError(null);
       })
       .catch((err) => {
         if (err.response.status === 404) {
           //sovrascrivo il messaggio di errore con la versione tradotta in italiano e personalizzato per l'utente
           err.response.data.message = 'Nessun film corrisponde al filtro di ricerca';
         }
-        setError(err.response.data);
+        setSearchError(err.response.data);
       })
       .finally(() => setIsLoading(false));
   }
@@ -59,9 +59,9 @@ export default function HomePage() {
       <div className="container-fluid px-5">
         <ul className="row row-gap-5">
           {/* se è presente un errore durante il la ricerca tramite filtro*/}
-          {error ? (
+          {searchError ? (
             <div className="container">
-              <p className="text-center fs-2 fw-bolder text-body-emphasis text-capitalize fst-italic ">{error.message}</p>
+              <p className="text-center fs-2 fw-bolder text-body-emphasis text-capitalize fst-italic ">{searchError.message}</p>
 
               <button
                 onClick={() => {

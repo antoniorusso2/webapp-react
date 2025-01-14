@@ -62,7 +62,7 @@ export default function AddReview({ id, onSuccess = () => {}, apiUrl = '' }) {
     // setFormData({});
   }
   return (
-    <form onSubmit={handleForm} className="add_review">
+    <form onSubmit={handleForm} className="add_review p-5 blur">
       <h2 className="add_review_title text-center fw-bold fs-1">Aggiungi qui la tua recensione:</h2>
       {/* nome utente che inserisce la recensione */}
       <label htmlFor="name" className="my_label">

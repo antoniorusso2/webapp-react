@@ -1,10 +1,10 @@
 :root {
-  --app-color: #46466e;
-  --accent-color: #dd105e;
-  --hover-accent-color: #5e0527;
-  --bg-color: #8787a3;
-  --text-color: #e8e2e2;
-  --gray: #393e46;
+  --app-color: #49586799;
+  --accent-color: #fe5f55;
+  --hover-accent-color: #a03e37;
+  --bg-color: #bdd5ea;
+  --text-color: #f7f7ff;
+  --gray: #577399;
   --star-color: #ece852;
   --overlay-color: #393e4690;
 
@@ -17,10 +17,14 @@
   flex-direction: column;
 }
 
-/* custom container padding */
+/* custom container width*/
 .container-fluid {
   max-width: 1800px;
   /* margin: auto; */
+}
+
+.blur {
+  backdrop-filter: blur(10px);
 }
 
 /* card custom width */
@@ -44,12 +48,12 @@ active class for links
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
 
   animation: extend 0.5s ease-in-out;
 }
-/* btns custom rules */
 
+/* btns custom rules */
 .btn {
   background-color: var(--accent-color);
   color: var(--text-color);
@@ -64,7 +68,7 @@ active class for links
 }
 
 .btn.back {
-  width: 10rem;
+  width: 150px;
 }
 
 .btn.back:active {
@@ -91,17 +95,24 @@ active class for links
   right: 0;
   left: 0;
   color: var(--text-color);
+
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
   & .my_overlay {
-    animation: extendHeight 0.5s ease-in-out forwards;
+    animation: extendHeight 0.8s ease-in-out forwards;
   }
 }
 
 .card-body {
   height: 100% !important;
+}
+
+.card-body.stars {
+  flex-grow: 1;
 }
 
 /* details page */
@@ -110,15 +121,19 @@ active class for links
 .add_review {
   background-color: var(--app-color);
   color: var(--text-color);
-  border-radius: 1rem;
-  padding: 1.2rem;
+  border-radius: 0.3rem;
+}
+
+.review {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
 }
 
 .movie_details h2 {
   letter-spacing: 0.2rem;
   text-underline-offset: var(--underline-offset);
   text-transform: uppercase;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 
 .movie_details img {
@@ -156,8 +171,6 @@ active class for links
     text-decoration: underline;
     text-underline-offset: var(--underline-offset);
   }
-
-  border-radius: 1rem;
 }
 
 /* classi di errore */
