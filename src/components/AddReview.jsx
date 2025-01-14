@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import GlobalContext from '../contexts/globalContext';
 
 const initialFormData = {
   name: '',
@@ -11,6 +12,9 @@ const initialFormData = {
 export default function AddReview({ id, onSuccess = () => {}, apiUrl = '' }) {
   const [formData, setFormData] = useState(initialFormData);
   const [isDataValid, setIsDataValid] = useState(true);
+
+  // loader
+  const { setIsLoading } = useContext(GlobalContext);
 
   function handleChange(e) {
     //previene il ricaricamento della pagina al submit del for
@@ -29,12 +33,14 @@ export default function AddReview({ id, onSuccess = () => {}, apiUrl = '' }) {
   function handleForm(e) {
     e.preventDefault();
 
+    setIsLoading(true);
     // console.log(formData);
 
     const { name, vote } = formData;
 
     if (!name || vote < 1 || vote > 5) {
       setIsDataValid(false);
+      setIsLoading(false);
       return; // evito che il form venga inviato se non sono stati riempiti correttamente
     }
 
@@ -49,6 +55,7 @@ export default function AddReview({ id, onSuccess = () => {}, apiUrl = '' }) {
       })
       .catch((err) => {
         console.error(err);
+        setIsLoading(false);
         // TODO: gestire l'errore appropriato nel caso di un fallimento nella chiamata API
       });
 
