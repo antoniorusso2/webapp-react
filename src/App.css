@@ -24,7 +24,7 @@
 }
 
 .blur {
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
 }
 
 /* card custom width */
@@ -77,6 +77,18 @@ active class for links
 
 .btn.back:hover svg {
   animation: arrowBounce 0.6s ease-in-out;
+}
+
+.go_up {
+  width: 100%;
+  margin: 2.5rem 0;
+  width: 100%;
+}
+
+.go_up > button.scroll_restore {
+  display: block;
+  width: 120px;
+  margin: 0 auto;
 }
 
 /* movie section with cards */

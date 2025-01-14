@@ -14,6 +14,8 @@ export default function MovieDetails() {
   const { setIsLoading } = useContext(GlobalContext);
   function fetchMovie() {
     setIsLoading(true);
+    window.scrollTo(0, 0); //torna alla prima riga quando si carica la pagina
+
     axios
       .get(`${apiUrl}/movies/${id}`)
       .then((res) => {
@@ -38,7 +40,7 @@ export default function MovieDetails() {
   // console.log('movie ', movie.reviews);
 
   return (
-    <div className="container-fluid px-4 detail_page" style={{ backgroundImage: `url(${movie.image})`, backgroundPosition: 'top', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed' }}>
+    <div className="container-fluid px-4 detail_page" style={{ backgroundImage: `url(${movie.image})`, backgroundPosition: 'center', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed' }}>
       <div className="row py-5">
         <div className="col-12 mb-3">
           <div className="d-flex flex-column align-items-center flex-sm-row align-items-sm-start gap-5 movie_details blur p-4">

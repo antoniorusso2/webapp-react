@@ -2,6 +2,9 @@ import MovieCard from '../components/MovieCard';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import GlobalContext from '../contexts/globalContext';
+import { ScrollRestoration } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -56,7 +59,7 @@ export default function HomePage() {
           </button>
         </form>
       </div>
-      <div className="container-fluid px-5">
+      <div className=" movie_list container-fluid px-5">
         <ul className="row row-gap-5">
           {/* se è presente un errore durante il la ricerca tramite filtro*/}
           {searchError ? (
@@ -85,6 +88,16 @@ export default function HomePage() {
             ))
           )}
         </ul>
+        <div className="go_up">
+          <button
+            className="btn scroll_restore"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
+            <FontAwesomeIcon icon={faArrowUp} />
+          </button>
+        </div>
       </div>
     </>
   );

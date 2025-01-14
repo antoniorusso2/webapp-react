@@ -15,6 +15,7 @@ export default function MovieCard({ movie }) {
           <StarsRating vote={avg_vote} />
           <p className="card-text fst-italic w-100">{director}</p>
           <p className="year w-100 flex-grow-1">{release_year} </p>
+
           <Link to={`/movies/${id}`} className="btn details w-100">
             Dettagli
           </Link>
