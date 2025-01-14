@@ -1,23 +1,27 @@
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import AddReview from '../components/AddReview';
 import StarsRating from '../components/StarsRating';
+import GlobalContext from '../contexts/globalContext';
 
 //variabile con url api basato sul file env
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function MovieDetails() {
+  const { setIsLoading } = useContext(GlobalContext);
   function fetchMovie() {
+    setIsLoading(true);
     axios
       .get(`${apiUrl}/movies/${id}`)
       .then((res) => {
         // console.log(res.data);
         setMovie(res.data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setIsLoading(false));
   }
   //film corrente
   const [movie, setMovie] = useState({});
@@ -43,7 +47,7 @@ export default function MovieDetails() {
               <h2 className="fs-1 fw-bold text-decoration-underline w-100">{movie.title}</h2>
               <p className="fst-italic">{movie.director}</p>
               <p className="abstract">{movie.abstract}</p>
-              {/* <div className="stars my-3">{stars.map((n) => (n < movie.avg_vote ? <FontAwesomeIcon key={n} icon={fullStar} /> : <FontAwesomeIcon icon={faStar} key={n} />))}</div> */}
+              {/* voto con stelline */}
               <StarsRating vote={Math.round(movie.avg_vote)} />
               {movie.release_year && <p>Anno di uscita: {movie.release_year}</p>}
             </div>

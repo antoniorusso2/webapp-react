@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-html {
+body {
   font-family: 'Montserrat', serif;
   font-optical-sizing: auto;
   font-weight: 500;
-}
 
-body {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
@@ -32,7 +30,8 @@ a {
   line-height: 2.5rem;
 }
 
-input {
+input,
+textarea {
   border: none;
   border-radius: 0.2rem;
   line-height: 1.5rem;
@@ -43,4 +42,11 @@ input:focus {
   border-radius: 0.5rem;
   border: none;
   transition: all 0.3s ease-in-out;
+}
+
+select,
+option {
+  font-family: inherit;
+  line-height: 1.5rem;
+  padding: 0.3rem 0.7rem;
 }

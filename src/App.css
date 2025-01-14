@@ -180,6 +180,16 @@ active class for links
   }
 }
 
+.loader {
+  position: fixed;
+  inset: 0;
+  background-color: #393e4499;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+}
+
 /* keyframes */
 @keyframes extendHeight {
   0% {
